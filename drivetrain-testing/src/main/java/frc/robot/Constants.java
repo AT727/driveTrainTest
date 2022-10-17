@@ -12,4 +12,10 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+    int port0 = 0;
+    int port1 = 1;
+    int port2 = 2;
+    int port3 = 3;
+
+}
