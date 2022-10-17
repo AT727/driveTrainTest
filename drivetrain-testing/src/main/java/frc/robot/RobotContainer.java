@@ -36,9 +36,9 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-  XboxController controller = new XboxController(0);
-  final Joystick m_leftStick = new Joystick();
-  final Joystick m_rightStick = new Joystick();
+    private final XboxController m_joystick = new XboxController(0);
+    final JoystickButton m_leftStick = new JoystickButton(m_joystick, 9);
+    final JoystickButton m_rightStick = new JoystickButton(m_joystick, 10);
   }
 
   /**
