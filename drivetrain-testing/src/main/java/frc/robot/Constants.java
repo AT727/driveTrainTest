@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SpeedController;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -13,9 +16,16 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    int port0 = 0;
-    int port1 = 1;
-    int port2 = 2;
-    int port3 = 3;
+
+public static final int motor1Port = 0;
+public static final int motor2Port = 1;
+public static final int motor3Port = 2;
+public static final int motor4Port = 3;
+public static final int motor5Port = 4;
+public static final int motor6Port = 5;
+public static final int motor7Port = 6;
+
+
 
 }
+
