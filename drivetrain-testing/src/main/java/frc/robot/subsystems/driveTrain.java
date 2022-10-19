@@ -3,21 +3,20 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+import frc.robot.subsystems.driveTrain;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.revrobotics.CANSparkMax;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.Constants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+
 
 public class driveTrain extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public driveTrain() {
-    CANSparkMax frontRight = new CANSparkMax(port0);
-    CANSparkMax frontLeft = new CANSparkMax(port1);
-    CANSparkMax backRight = new CANSparkMax(port2);
-    CANSparkMax backLeft = new CANSparkMax(port3);
-
-    MotorControllerGroup m_left = new MotorControllerGroup(frontLeft, backLeft);
-    MotorControllerGroup m_right = new MotorControllerGroup(frontRight, backRight);
-    DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
+  
+    
   }
 
   @Override
@@ -29,4 +28,6 @@ public class driveTrain extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+
+
 }
