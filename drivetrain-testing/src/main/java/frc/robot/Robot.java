@@ -8,6 +8,15 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Joystick;
+
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -15,14 +24,25 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * project.
  */
 public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
-
+  private Command m_autonomousCommand;  
   private RobotContainer m_robotContainer;
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
+    CANSparkMax frontLeft = new CANSparkMax(Constants.motor1Port,  MotorType.kBrushless);
+    CANSparkMax middleLeft = new CANSparkMax(Constants.motor2Port,  MotorType.kBrushless);
+    CANSparkMax backLeft = new CANSparkMax(Constants.motor3Port,  MotorType.kBrushless);
+    CANSparkMax frontRight = new CANSparkMax(Constants.motor4Port,  MotorType.kBrushless);
+    CANSparkMax middleRight = new CANSparkMax(Constants.motor5Port,  MotorType.kBrushless);
+    CANSparkMax backRight = new CANSparkMax(Constants.motor6Port,  MotorType.kBrushless);
+
+    SpeedControllerGroup m_left = new SpeedControllerGroup(frontLeft, middleLeft, backLeft);
+    SpeedControllerGroup m_right = new SpeedControllerGroup(frontRight, middleRight, backRight);
+
+    DifferentialDrive m_drive = new DifferentialDrive(m_left, m_right);
+
+    Joystick controller = new Joystick (0);
+    double yAxis = controller.getRawAxis(1);
+    double xAxis = controller.getRawAxis(5);
+
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
@@ -70,10 +90,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
+    m_drive.tankDrive(yAxis, xAxis);
+
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -81,7 +100,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+  }
 
   @Override
   public void testInit() {
